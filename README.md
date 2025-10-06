@@ -44,8 +44,8 @@ In this lab, we’ll take advantage of its flexibility to build our own custom i
 Based on the VirusTotal integration script, we wrote a new script called `custom-misp-file-hashes.py`. This file must be placed in the `/var/ossec/integrations` directory in the Wazuh Server.
 
 
-Download the custom-misp-file-hashes.py script.
-After creating the [custom-misp_file_hashes.py](scripts/custom-misp_file_hashes.py) file in the `/var/ossec/integrations` directory, we have to adjust the file permissions:
+Download the [custom-misp_file_hashes.py](scripts/custom-misp_file_hashes.py) script.
+After adding the script in the `/var/ossec/integrations` directory, we have to adjust the file permissions:
 
 ```bash
 chmod 750 misp_file_hashes.py
