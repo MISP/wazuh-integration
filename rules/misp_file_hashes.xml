@@ -1,0 +1,34 @@
+<group name="misp,malware,">
+    <rule id="100800" level="0">
+        <decoded_as>json</decoded_as>
+        <description>MISP: file hash check</description>
+        <field name="integration">misp_file_hashes</field>
+        <options>no_full_log</options>
+    </rule>
+    <rule id="100801" level="0">
+        <if_sid>100800</if_sid>
+        <field name="misp_file_hashes.found">0</field>
+        <description>MISP: file hash not found</description>
+    </rule>
+    <rule id="100802" level="12">
+        <if_sid>100800</if_sid>
+        <field name="misp_file_hashes.found">1</field>
+        <description>MISP: file hash matched</description>
+    </rule>
+    <rule id="100803" level="10">
+        <if_sid>100800</if_sid>
+        <field name="misp_file_hashes.error">403</field>
+        <description>MISP ERROR: Invalid MISP credentials, check your the api_key setting configured
+            in the MISP integration is valid MISP AuthKey</description>
+    </rule>
+    <rule id="100803" level="10">
+        <if_sid>100800</if_sid>
+        <field name="misp_file_hashes.error">429</field>
+        <description>MISP ERROR: Rate limit exceeded, too many requests</description>
+    </rule>
+    <rule id="100804" level="10">
+        <if_sid>100800</if_sid>
+        <field name="misp_file_hashes.error">500</field>
+        <description>MISP ERROR: $(misp_file_hashes.description)</description>
+    </rule>
+</group>
